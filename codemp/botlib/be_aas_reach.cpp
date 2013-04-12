@@ -4170,7 +4170,34 @@ void AAS_Reachability_WalkOffLedge(int areanum)
 											gap = qfalse;
 											break;
 										} //end if
+										if(!(face3->faceflags & FACE_LIQUIDSURFACE))
+										{
+											gap = qtrue;
+											break;
+										} //end if
+										if(face3->faceflags & FACE_LIQUID)
+										{
+											gap = qfalse;
+											break;
+										} //end if
+										if(!(face3->faceflags & FACE_GAP))
+										{
+											gap = qtrue;
+											break;
+										} //end if
+										if(face3->faceflags & FACE_LADDER)
+										{
+											gap = qfalse;
+											break;
+										}
+										if(!(face3->faceflags & FACE_BRIDGE))
+										{
+											gap = qtrue;
+											break;
+										}
 										//FIXME: there are more situations to be handled
+
+										//Implicit set gap to true if none of the situations were met
 										gap = qtrue;
 										break;
 									} //end if
